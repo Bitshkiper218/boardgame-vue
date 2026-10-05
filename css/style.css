@@ -11,18 +11,13 @@ body {
   background-color: #f8f9fa;
 }
 
-/* 
- * НЕЧІТКА ВИМОГА: "має виглядати як каталог, яким приємно гортати".
- * ОБҐРУНТУВАННЯ: Використано грайливий шрифт 'Nunito' для заголовків, 
- * щоб створити атмосферу розваг, та нейтральний 'Inter' для опису правил.
- */
 h1, h2, h3 {
   font-family: 'Nunito', sans-serif;
   color: #2b1f3d;
   margin-top: 0;
 }
 
-/* Деталь нечіткої вимоги: бейдж як акцент */
+/* Бейдж для кількості гравців */
 .badge {
   display: inline-block;
   background-color: #ffb703;
@@ -34,11 +29,8 @@ h1, h2, h3 {
   margin-bottom: 12px;
 }
 
-/* 
- * ЧІТКА ВИМОГА: кнопки фільтрів - контрастний акцентний колір, 
- * область натискання мінімум 44x44px. 
- */
-.btn-filter {
+/* Кнопки та елементи управління */
+.btn-filter, .reset-btn {
   background-color: #7b2cbf;
   color: white;
   min-height: 44px;
@@ -51,9 +43,19 @@ h1, h2, h3 {
   transition: background-color 0.2s;
 }
 
-.btn-filter:hover {
+.btn-filter:hover, .reset-btn:hover {
   background-color: #5a189a;
 }
+
+.reset-btn {
+  background-color: #e63946;
+  margin-top: 8px;
+}
+
+.reset-btn:hover {
+  background-color: #c52233;
+}
+
 img {
   max-width: 100%;
   height: auto;
@@ -89,55 +91,71 @@ header nav a:hover {
 }
 
 main {
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;   
   padding: 20px;
 }
 
-section {
-  margin-bottom: 40px;
-}
-
-form {
-  padding: 16px;
-  background-color: white;
-  border: 1px solid #ccc;
+.filter-section {
+  text-align: center;
+  margin-bottom: 30px;
+  background: white;
+  padding: 15px;
   border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
-form input {
-  padding: 8px;
-  border: 1px solid #7b2cbf;
-  border-radius: 4px;
-}
-
+/* Сітка карток */
 .cards {
   display: grid;
   grid-template-columns: 1fr;
   gap: 24px;
 }
 
-article {
+/* Стиль окремої картки гри */
+.card {
   background-color: white;
   padding: 16px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-  transition: box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
 }
 
-article:hover {
+.card:hover {
   box-shadow: 0 10px 20px rgba(123, 44, 191, 0.3);
+  transform: translateY(-3px);
 }
 
-article img {
+.card img {
   width: 100%;
-  height: 250px;
+  height: 200px;
   object-fit: cover;
   border-radius: 4px;
   margin-bottom: 12px;
+}
+
+.card h3 {
+  margin-bottom: 8px;
+  font-size: 1.25rem;
+}
+
+/* Клікабельний жанр */
+.genre-text {
+  margin-top: auto;
+  font-size: 0.95rem;
+}
+
+.genre-link {
+  color: #7b2cbf;
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.genre-link:hover {
+  color: #5a189a;
 }
 
 footer {
@@ -148,17 +166,13 @@ footer {
   font-size: 0.9rem;
   margin-top: 40px;
 }
+
 @media (min-width: 600px) {
-  form {
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-  
   .cards {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
 @media (min-width: 1024px) {
   header {
     flex-direction: row;
@@ -166,6 +180,6 @@ footer {
   }
 
   .cards {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
   }
 }

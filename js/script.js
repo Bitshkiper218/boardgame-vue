@@ -1,15 +1,15 @@
-// Крок 1. Вибір фреймворку: обрано Vue 3 через зручність декларативного рендерингу та реактивності без потреби налаштування складних збірників.
 const GameCard = {
-    props: ['title', 'minPlayers', 'maxPlayers', 'genre'],
+    props: ['title', 'minPlayers', 'maxPlayers', 'genre', 'img'],
     emits: ['filter'],
     template: `
-        <div class="game-card">
+        <article class="card">
             <h3>{{ title }}</h3>
-            <p class="players">👥 {{ minPlayers }}–{{ maxPlayers }} гравців</p>
-            <p class="genre" @click="$emit('filter', genre)">
+            <span class="badge">👥 {{ minPlayers }}–{{ maxPlayers }} гравців</span>
+            <img :src="img" :alt="'Обкладинка гри ' + title">
+            <p class="genre-text" @click="$emit('filter', genre)">
                 Жанр: <span class="genre-link">{{ genre }}</span>
             </p>
-        </div>
+        </article>
     `
 };
 
@@ -18,11 +18,11 @@ const App = {
         return {
             currentGenre: '',
             games: [
-                { id: 1, title: 'Каркасон', minPlayers: 2, maxPlayers: 5, genre: 'Стратегія' },
-                { id: 2, title: 'Манчкін', minPlayers: 3, maxPlayers: 6, genre: 'Карткова' },
-                { id: 3, title: 'Діксіт', minPlayers: 3, maxPlayers: 8, genre: 'Асоціації' },
-                { id: 4, title: 'Козаки', minPlayers: 2, maxPlayers: 4, genre: 'Стратегія' },
-                { id: 5, title: 'Вуаля', minPlayers: 2, maxPlayers: 6, genre: 'Карткова' }
+                { id: 1, title: 'Каркасон', minPlayers: 2, maxPlayers: 5, genre: 'Стратегія', img: 'assets/img/carcassonne.jpg' },
+                { id: 2, title: 'Манчкін', minPlayers: 3, maxPlayers: 6, genre: 'Карткова', img: 'assets/img/munchkin.jpg' },
+                { id: 3, title: 'Діксіт', minPlayers: 3, maxPlayers: 8, genre: 'Асоціації', img: 'assets/img/dixit.jpg' },
+                { id: 4, title: 'Козаки', minPlayers: 2, maxPlayers: 4, genre: 'Стратегія', img: 'assets/img/Cossacs.jpg' },
+                { id: 5, title: 'Вуаля', minPlayers: 2, maxPlayers: 6, genre: 'Карткова', img: 'assets/img/Wualia.jpg' }
             ]
         };
     },
